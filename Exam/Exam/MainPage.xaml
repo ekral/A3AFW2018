@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Exam"
+             x:Class="Exam.MainPage">
+
+    <StackLayout>
+        <Label Text="{Binding Number}" />
+        <Button Text="Increase" Command="{Binding CommandIncrease}" />
+        <Button Text="Reset" Command="{Binding CommandReset}" />
+        <Button Text="Edit" Command="{Binding CommandNavigateToEdit}" />
+    </StackLayout>
+
+</ContentPage>
