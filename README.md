@@ -71,7 +71,7 @@ Dále si popíšeme základní principy použíté v tomto příkladu:
     ```
 - Command
 
-1. Nejprve ve ViewModelu vytvoříme property typu Command a poté vytvoříme její instanci, v konstruktoru jí potom předáme referenci na metodu, která se má zavolat. Můžeme použít i lamda výrazy. 
+    Nejprve ve ViewModelu vytvoříme property typu `Command` a poté vytvoříme její instanci. V konstruktoru jí potom předáme referenci na metodu, která se má zavolat když uživatel stiskne například tlačítko.
 
     Například v našem ViewModelu `CounterViewModel` máme property `CommandIncrease` typu `Command`:
 
@@ -79,13 +79,13 @@ Dále si popíšeme základní principy použíté v tomto příkladu:
     public Command CommandIncrease { get; set; }
     ```
 
-    V konstruktoru potom vytváříme instanci třídy Command a v konstruktoru jí předáme referenci na metodu `Increase`:
+    V konstruktoru potom vytváříme instanci třídy `Command` a v konstruktoru jí předáváme referenci na metodu `Increase`:
 
     ```cs
     CommandIncrease = new Command(Increase);
     ```
 
-    V metodě Increase potom zvýšime hodnotu počítadla reprezentovanou property `Number`:
+    V metodě Increase potom zvyšujeme hodnotu počítadla reprezentovanou property `Number`:
 
     ```cs
     private void Increase()
@@ -94,7 +94,7 @@ Dále si popíšeme základní principy použíté v tomto příkladu:
     }
     ```
 
-    Ve View `MainPage` potom bindujeme property Command třídy Button na náš CommandIncrease:
+    Ve View `MainPage` potom bindujeme property Command třídy Button na propertz `CommandIncrease` třídy `CounterViewModel`:
      ```XAML
     <Button Text="Increase" Command="{Binding CommandIncrease}" />
     ```
