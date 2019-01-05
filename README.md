@@ -14,4 +14,3 @@ Popis příkladu bude doplněn.
 
 
 
-
