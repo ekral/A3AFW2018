@@ -20,6 +20,17 @@ Nejdůležitější soubory v projektu jsou:
 - [EditPage.xaml](Exam/Exam/EditPage.xaml) - View obsahující `Entry` pro editaci hodnoty počítadla.
 - [CounterViewModel.cs](Exam/Exam/CounterViewModel.cs) - ViewModel, který má property `Number`, `CommandIncrease`, `CommandReset` a `CommandNavigateToEdit`. Obě View v tomto příkladu sdílejí jednu instanci tohoto ViewModelu.
 
+Dále si popíšeme základní principy použíté v tomto příkladu:
+
+- Bindování
+
+1. Nejprve vytvoříme v souboru [App.xaml.cs](Exam/Exam/App.xaml.cs) instanci našeho ViewModelu, tedy třídy `CounterViewModel` a referenci na tuto instanci přiřadíme propertě `MainPage` třídy `App`:
+
+```cs 
+MainPage mainPage = new MainPage(new CounterViewModel());
+MainPage = new NavigationPage(mainPage);
+```
+
 
 
 
