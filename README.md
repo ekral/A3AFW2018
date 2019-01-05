@@ -12,3 +12,6 @@ Základní pojmy:
 
 Popis příkladu bude doplněn.
 
+
+
+
