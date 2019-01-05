@@ -24,13 +24,34 @@ Dále si popíšeme základní principy použíté v tomto příkladu:
 
 - Bindování
 
-1. Nejprve vytvoříme v souboru [App.xaml.cs](Exam/Exam/App.xaml.cs) instanci našeho ViewModelu, tedy třídy `CounterViewModel` a referenci na tuto instanci přiřadíme propertě `MainPage` třídy `App`:
+1. Nejprve vytvoříme v souboru [App.xaml.cs](Exam/Exam/App.xaml.cs) instanci našeho ViewModelu a předáme ji v konstruktoru třídě `MainPage`. Kvuli hierarchické navigaci navíc ještě použijeme třídu `NavigationPage`:
 
-```cs 
-MainPage mainPage = new MainPage(new CounterViewModel());
-MainPage = new NavigationPage(mainPage);
-```
+    ```cs 
+    MainPage mainPage = new MainPage(new CounterViewModel());
+    MainPage = new NavigationPage(mainPage);
+    ```
 
+    Třída MainPage potom v konstruktoru nastaví svůj `BindingContext` na referenci typu `CounterViewModel`:
+
+    ```cs 
+    CounterViewModel _viewModelPocitadlo;
+        
+    public MainPage(CounterViewModel viewModelPocitadlo)
+    {
+        InitializeComponent();
+
+        _viewModelPocitadlo = viewModelPocitadlo;
+        BindingContext = _viewModelPocitadlo;
+    }
+    ```
+
+    Poznámka: Instanci ViewModelu můžeme vytvářet různými způsoby, například přímo v jazyku XAML.
+
+2. Pomocí markup extension `Binding` nabindujeme property `Text` elementu `Label` na hodnotu property `Number` objektu přiřazeného propertě `BidingContext` třídy `MainPage`, což je instance třídy `CounterViewModel` přiřazená v předchozím kroku.
+
+    ```XAML
+    <Label Text="{Binding Number}" />
+    ```
 
 
 

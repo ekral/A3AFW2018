@@ -10,6 +10,7 @@ namespace Exam
     public partial class MainPage : ContentPage
     {
         CounterViewModel _viewModelPocitadlo;
+        
         public MainPage(CounterViewModel viewModelPocitadlo)
         {
             InitializeComponent();
