@@ -12,11 +12,11 @@ Příklad obsahuje základy toho co byste měli znát abyste uspěli u testu.
 
 ## Popis kódu
 
-Kód popisovaný v následujícím textu najdete v projektu *Exam*, který obsahuje kód společný pro všechny platformy.
+Kód popisovaný v následujícím textu najdete v projektu [Exam](Exam/Exam), který obsahuje kód společný pro všechny platformy.
 
 Nejdůležitější soubory v projektu jsou:
 
-- [MainPage.xaml](Exam/Exam/MainPage.xaml) - View obsahující hlavní stránku aplikace obsahující *Label* a *Buttony* pro zvýšení hodnoty počítadla, resetu hodnoty počítadla a pro editaci hodnoty počítadla, které naviguje na druhé View `EditPage.xaml`
+- [MainPage.xaml](Exam/Exam/MainPage.xaml) - View obsahující hlavní stránku aplikace obsahující *Label* a *Buttony* pro zvýšení hodnoty počítadla, resetu hodnoty počítadla a pro editaci hodnoty počítadla, které naviguje na druhé View [EditPage.xaml](Exam/Exam/EditPage.xaml)
 
 
 
