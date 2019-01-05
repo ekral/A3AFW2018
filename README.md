@@ -16,7 +16,9 @@ Kód popisovaný v následujícím textu najdete v projektu [Exam](Exam/Exam), k
 
 Nejdůležitější soubory v projektu jsou:
 
-- [MainPage.xaml](Exam/Exam/MainPage.xaml) - View obsahující hlavní stránku aplikace obsahující *Label* a *Buttony* pro zvýšení hodnoty počítadla, resetu hodnoty počítadla a pro editaci hodnoty počítadla, které naviguje na druhé View [EditPage.xaml](Exam/Exam/EditPage.xaml)
+- [MainPage.xaml](Exam/Exam/MainPage.xaml) - View obsahující hlavní stránku aplikace obsahující `Label` a `Button` pro zvýšení hodnoty počítadla, reset hodnoty počítadla a pro editaci hodnoty počítadla, kdy naviguje na druhé View  [EditPage.xaml](Exam/Exam/EditPage.xaml)
+- [EditPage.xaml](Exam/Exam/EditPage.xaml) - View obsahující `Entry` pro editaci hodnoty počítadla.
+- [CounterViewModel.cs](Exam/Exam/CounterViewModel.cs) - ViewModel, který má property `Number`, `CommandIncrease`, `CommandReset` a `CommandNavigateToEdit`. Obě View v tomto příkladu sdílejí jednu instanci tohoto ViewModelu.
 
 
 
