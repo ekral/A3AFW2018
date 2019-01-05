@@ -1,23 +1,23 @@
 ﻿# Popis vzorového úkolu
 
-Příklad obsahuje základy toho co byste měli znát abyste uspěli u testu.
+Příklad obsahuje základy toho, co byste měli znát abyste uspěli u testu.
 
 Test bude mít dvě části, písemný test a potom ústní rozpravu.
 
 ## Hodnocení testu:
 
-#### Minimumální znalosti na hodnocení E - dostatečně
+#### Minimální znalosti na hodnocení E - dostatečně
 
 - Znalost základních pojmů View, ViewModel, Bindování, PropertyChanged, Command
 - Znalost použití Bindování v jazyku XAML a C#
 - Znalost použití eventu `PropertyChanged` a rozhraní `INotifyPropertyChanged`
 - Vytváření instance ViewModelu v jazyce XAML nebo C#
 
-#### Minimumální znalosti na hodnocení B - velmi dobře
+#### Minimální znalosti na hodnocení B - velmi dobře
 - Znalost XAML jmenných prostorů, mapování XAML jmenných prostorů (`xmlns:x`) a definice kódu na pozadí  (`x:Class`)
 - Znalost použití třídy `Command`
 - Znalost použití hierarchické navigace
-#### Minimumální znalosti na hodnocení A - výborně a lepší
+#### Minimální znalosti na hodnocení A - výborně a lepší
 - Znalost použití klíčových slov `async` a `await`
 
 
