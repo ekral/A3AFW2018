@@ -29,14 +29,22 @@ Test bude mít dvě části, písemný test a potom ústní rozpravu.
 - **PropertyChanged** - event v rozhraní *INotifyPropertyChanged* pomocí kterého ViewModel informuje control ve View, například TextBox, že došlo ke změně property ve ViewModelu a View ji má znovu načíst a zobrazit.
 - **Command** - pomocí commandů může View volat metody ViewModelu a opět na sebe nemusí mít referenci. Commnand je potom třída implementující rozhraní *ICommand*. Ve ViewModelu potom vytváříme property typu Commmand a předáváme jí delegáta na metodu ve ViewModelu, kterou chceme zavolat. Ve View potom například Button na tuto property Command binduje.
 
-## Popis kódu
+## Popis příkladu
+
+
 
 Kód popisovaný v následujícím textu najdete v projektu [Exam](Exam/Exam), který obsahuje kód společný pro všechny platformy.
 
 Nejdůležitější soubory v projektu jsou:
 
 - [MainPage.xaml](Exam/Exam/MainPage.xaml) - View obsahující hlavní stránku aplikace obsahující `Label` a `Button` pro zvýšení hodnoty počítadla, reset hodnoty počítadla a pro editaci hodnoty počítadla, kdy naviguje na druhé View  [EditPage.xaml](Exam/Exam/EditPage.xaml)
+
+    ![GitHub Logo](sc1.png)
+
 - [EditPage.xaml](Exam/Exam/EditPage.xaml) - View obsahující `Entry` pro editaci hodnoty počítadla.
+
+    ![GitHub Logo](sc2.png)
+
 - [CounterViewModel.cs](Exam/Exam/CounterViewModel.cs) - ViewModel, který má property `Number`, `CommandIncrease`, `CommandReset` a `CommandNavigateToEdit`. Obě View v tomto příkladu sdílejí jednu instanci tohoto ViewModelu.
 
 Dále si popíšeme základní principy použíté v tomto příkladu:
@@ -104,7 +112,7 @@ Dále si popíšeme základní principy použíté v tomto příkladu:
     CommandIncrease = new Command(Increase);
     ```
 
-    V metodě Increase potom zvyšujeme hodnotu počítadla reprezentovanou property `Number`:
+    V metodě `Increase` potom zvyšujeme hodnotu počítadla reprezentovanou property `Number`:
 
     ```cs
     private void Increase()
