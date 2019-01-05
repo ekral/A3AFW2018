@@ -94,12 +94,34 @@ Dále si popíšeme základní principy použíté v tomto příkladu:
     }
     ```
 
-    Ve View `MainPage` potom bindujeme property Command třídy Button na propertz `CommandIncrease` třídy `CounterViewModel`:
+    Ve třídě `MainPage` potom bindujeme property Command třídy Button na property `CommandIncrease` třídy `CounterViewModel`:
      ```XAML
     <Button Text="Increase" Command="{Binding CommandIncrease}" />
     ```
+- PropertyChanged
+  
+- Navigace
 
+    V příkladu využíváme hierarchickou navigaci, proto jsme při vytváření instance třídy `MainPage` použili i třídu `NavigationPage`.
 
+    V příkladu potom máme v třídě `CounterViewModel` property `CommandNavigateToEdit`:
 
+    ```cs
+    public Command CommandNavigateToEdit { get; set; }
+    ```
 
+    Pomocí tohoto Commandu potom voláme metodu `NavigateToEdit`. V této metodě pomocí metody `PushAsync` navigujeme na View `EditPage` a v konstrukotru předáváme pomocí klíčového slova `this` referenci na `CounterViewModel` ve kterém se nacházíme. Obě View tedy budou sdílet stejný ViewModel.
 
+    ```cs
+    async private void NavigateToEdit()
+    {
+        EditPage editPage = new EditPage(this);
+        INavigation navigation = Application.Current.MainPage.Navigation;
+
+        await navigation.PushAsync(editPage);
+    }
+    ```
+
+    Poznámky: 
+    - použití async a await není v tomto příkladě nutné. Mělo by význam jen, pokud bychom chtěli provést nejakou akci až potom co se navigace dokončí.
+    - Jednotlivá view nemusí vždy sdílet stejný ViewModel, záleží na typu aplikace. Často se v této souvisloti používá IoC konteiner, což jsem ale v tomto předmětu neprobírali.
