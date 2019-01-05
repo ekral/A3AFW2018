@@ -16,7 +16,7 @@ Kód popisovaný v následujícím textu najdete v projektu *Exam*, který obsah
 
 Nejdůležitější soubory v projektu jsou:
 
-- `MainPage.xaml` - View obsahující hlavní stránku aplikace obsahující *Label* a *Buttony* pro zvýšení hodnoty počítadla, resetu hodnoty počítadla a pro editaci hodnoty počítadla, které naviguje na druhé View `EditPage.xaml`
+- [MainPage.xaml](Exam/Exam/MainPage.xaml) - View obsahující hlavní stránku aplikace obsahující *Label* a *Buttony* pro zvýšení hodnoty počítadla, resetu hodnoty počítadla a pro editaci hodnoty počítadla, které naviguje na druhé View `EditPage.xaml`
 
 
 
