@@ -53,6 +53,51 @@ Dále si popíšeme základní principy použíté v tomto příkladu:
     <Label Text="{Binding Number}" />
     ```
 
+    Třída `CounterViewModel` potom obsahuje kromě jiného property `Number`. Použití eventu `PropertyChange` vysvětlíme později:
+
+    ```cs 
+    public class CounterViewModel : INotifyPropertyChanged
+    {
+        // dalsi kod
+
+        public int Number
+        {
+            get { return _number; }
+            set { _number = value; OnPropertyChanged();}
+        }
+
+        // dalsi kod
+    }
+    ```
+- Command
+
+1. Nejprve ve ViewModelu vytvoříme property typu Command a poté vytvoříme její instanci, v konstruktoru jí potom předáme referenci na metodu, která se má zavolat. Můžeme použít i lamda výrazy. 
+
+    Například v našem ViewModelu `CounterViewModel` máme property `CommandIncrease` typu `Command`:
+
+    ```cs
+    public Command CommandIncrease { get; set; }
+    ```
+
+    V konstruktoru potom vytváříme instanci třídy Command a v konstruktoru jí předáme referenci na metodu `Increase`:
+
+    ```cs
+    CommandIncrease = new Command(Increase);
+    ```
+
+    V metodě Increase potom zvýšime hodnotu počítadla reprezentovanou property `Number`:
+
+    ```cs
+    private void Increase()
+    {
+        ++Number;
+    }
+    ```
+
+    Ve View `MainPage` potom bindujeme property Command třídy Button na náš CommandIncrease:
+     ```XAML
+    <Button Text="Increase" Command="{Binding CommandIncrease}" />
+    ```
 
 
 
