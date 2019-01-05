@@ -2,12 +2,31 @@
 
 Příklad obsahuje základy toho co byste měli znát abyste uspěli u testu.
 
+Test bude mít dvě části, písemný test a potom ústní rozpravu.
+
+## Hodnocení testu:
+
+#### Minimumální znalosti na hodnocení E - dostatečně
+
+- Znalost základních pojmů View, ViewModel, Bindování, PropertyChanged, Command
+- Znalost použití Bindování v jazyku XAML a C#
+- Znalost použití eventu `PropertyChanged` a rozhraní `INotifyPropertyChanged`
+- Vytváření instance ViewModelu v jazyce XAML nebo C#
+
+#### Minimumální znalosti na hodnocení B - velmi dobře
+- Znalost XAML jmenných prostorů, mapování XAML jmenných prostorů (`xmlns:x`) a definice kódu na pozadí  (`x:Class`)
+- Znalost použití třídy `Command`
+- Znalost použití hierarchické navigace
+#### Minimumální znalosti na hodnocení A - výborně a lepší
+- Znalost použití klíčových slov `async` a `await`
+
+
 ## Základní pojmy:
 
 - **View** - typicky jedno okno aplikace, tedy to co vidí uživatel
 - **ViewModel** - je třída obsahující data pro zobrazení, konkrétně property, které chceme zobrazovat ve View. Například *MainViewModel*. Mmodel jsou obecně data v paměti.
 - **Bindování** - mechanismus pomocí kterého spolu komunikují View a View model a přitom na sebe nemají přímou referenci, což umožňuje nezávislý vývoj a testování.
-- **PropertyChange** - event v rozhraní *INotifyPropertyChanged* pomocí kterého ViewModel informuje control ve View, například TextBox, že došlo ke změně property ve ViewModelu a View ji má znovu načíst a zobrazit.
+- **PropertyChanged** - event v rozhraní *INotifyPropertyChanged* pomocí kterého ViewModel informuje control ve View, například TextBox, že došlo ke změně property ve ViewModelu a View ji má znovu načíst a zobrazit.
 - **Command** - pomocí commandů může View volat metody ViewModelu a opět na sebe nemusí mít referenci. Commnand je potom třída implementující rozhraní *ICommand*. Ve ViewModelu potom vytváříme property typu Commmand a předáváme jí delegáta na metodu ve ViewModelu, kterou chceme zavolat. Ve View potom například Button na tuto property Command binduje.
 
 ## Popis kódu
@@ -95,11 +114,52 @@ Dále si popíšeme základní principy použíté v tomto příkladu:
     ```
 
     Ve třídě `MainPage` potom bindujeme property Command třídy Button na property `CommandIncrease` třídy `CounterViewModel`:
-     ```XAML
+    ```XAML
     <Button Text="Increase" Command="{Binding CommandIncrease}" />
+    ```
+
+    Ve View EditPage potom bindujeme na property `Number` pomocí zápisu  `Mode=TwoWay` obousměrmě, tedy property můžemě i měnit:
+
+    ```XAML
+    <Entry Text="{Binding Number, Mode=TwoWay}"
+                Placeholder="number"
+                SelectionLength="10"
+                Keyboard="Numeric"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
     ```
 - PropertyChanged
   
+    View aktivně nezjištujě zda se změnily hodnoty property ve ViewModelu a mají se zaktualizovat zobrazení. Aby nabidnované elementy ve View reagovali na změny musíme použít event `PropertyChanged` z rozhraní `InNotifyPropertyChanged`.
+
+    V našem příkladu implementuje rozhraní `InNotifyPropertyChanged` přímo třída `CounterViewModel`. Díky použití atributu `[CallerMemberName]` nemusíme jako parametr předávat název property. Díky použití operátoru `?.` se metoda `Invoke` nezavolá pokud by měl event `PropertyChanged` hodnotu `null`.
+
+    ```cs
+    public class CounterViewModel : INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName]string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        // dalsi kod
+    }
+    ```
+
+    Metodu `OnPropertyChanged` potom nejčastěji voláme se setteru property, například zde voláme tuto metodu v setteru property `Number`:
+
+    ```cs
+    public int Number
+    {
+        get { return _number; }
+        set { _number = value; OnPropertyChanged();}
+    }
+    ```
+
+
+
 - Navigace
 
     V příkladu využíváme hierarchickou navigaci, proto jsme při vytváření instance třídy `MainPage` použili i třídu `NavigationPage`.
